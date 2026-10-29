@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Quiz Application Stylesheet
+   Built with CSS3 & Bootstrap 5
+   ========================================================================== */
+
+/* Google Font: Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #3b82f6;
+  --primary-dark: #1d4ed8;
+  --secondary-color: #64748b;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f1f5f9 50%, #dbeafe 100%);
+  --card-radius: 1.25rem;
+  --transition-speed: 0.25s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e293b;
+  margin: 0;
+  padding: 1rem 0;
+}
+
+/* Quiz Card Container */
+.quiz-card {
+  border-radius: var(--card-radius);
+  background: #ffffff;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+  transition: transform var(--transition-speed) ease;
+}
+
+/* Custom Header with Gradient */
+.card-header-custom {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #4f46e5 100%);
+}
+
+/* Welcome Icon Box */
+.welcome-icon-box {
+  width: 90px;
+  height: 90px;
+  background: #eff6ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: inset 0 2px 4px rgba(59, 130, 246, 0.15);
+}
+
+/* Rules / Guidelines Box */
+.rules-card {
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc !important;
+}
+
+/* Question Box */
+.question-box {
+  background-color: #f8fafc;
+  border-left: 4px solid var(--primary-color);
+  padding: 1rem 1.25rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Option Buttons Styling */
+.option-btn {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 0.85rem 1.15rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #334155;
+  background-color: #ffffff;
+  border: 2px solid #e2e8f0;
+  border-radius: 0.75rem;
+  transition: all var(--transition-speed) ease;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+}
+
+.option-btn:hover {
+  border-color: #93c5fd;
+  background-color: #f0f7ff;
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Option Letter Badge (A, B, C, D) */
+.option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  background-color: #e2e8f0;
+  color: #475569;
+  font-weight: 700;
+  font-size: 0.875rem;
+  margin-right: 0.85rem;
+  transition: all var(--transition-speed) ease;
+}
+
+.option-btn:hover .option-letter {
+  background-color: #bfdbfe;
+  color: #1e40af;
+}
+
+/* Selected Option State */
+.option-btn.selected {
+  border-color: #2563eb;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.option-btn.selected .option-letter {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+/* Checkmark indicator for selected option */
+.option-btn .option-check {
+  margin-left: auto;
+  font-size: 1.15rem;
+  color: transparent;
+  transition: color var(--transition-speed) ease;
+}
+
+.option-btn.selected .option-check {
+  color: #2563eb;
+}
+
+/* Results Screen Styling */
+.result-icon-box {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #fef3c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.score-display-card {
+  min-width: 220px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Review Answers Container & Cards */
+.review-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  text-align: left;
+  transition: box-shadow var(--transition-speed) ease;
+}
+
+.review-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.07);
+}
+
+/* Review Correct Border Accent */
+.review-card.correct-card {
+  border-left: 4px solid var(--success-color);
+}
+
+/* Review Incorrect Border Accent */
+.review-card.incorrect-card {
+  border-left: 4px solid var(--danger-color);
+}
+
+/* Answer tag pills */
+.answer-tag {
+  display: inline-block;
+  font-size: 0.825rem;
+  font-weight: 500;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.4rem;
+}
+
+.answer-tag-user-correct {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.answer-tag-user-wrong {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.answer-tag-correct {
+  background-color: #dcfce7;
+  color: #166534;
+  font-weight: 600;
+}
+
+/* Smooth animations */
+.fade-in {
+  animation: fadeIn 0.35s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .quiz-card {
+    border-radius: 1rem;
+  }
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  .option-btn {
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+  }
+}

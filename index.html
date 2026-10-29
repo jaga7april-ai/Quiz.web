@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interactive Quiz App</title>
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-10 col-lg-8 col-xl-7">
+        
+        <!-- Main Quiz Application Card -->
+        <div class="quiz-card card shadow-lg border-0 rounded-4 overflow-hidden">
+          
+          <!-- Card Header Banner -->
+          <div class="card-header-custom p-4 text-center text-white">
+            <h1 class="h3 fw-bold mb-1">
+              <i class="bi bi-patch-question me-2"></i>Tech Quiz Master
+            </h1>
+            <p class="mb-0 text-white-50 small">Test your web development & general computer science knowledge</p>
+          </div>
+
+          <!-- Card Body containing all 3 screens -->
+          <div class="card-body p-4 p-md-5">
+
+            <!-- SCREEN 1: Welcome Screen -->
+            <div id="welcome-screen" class="text-center">
+              <div class="welcome-icon-box mb-3 mx-auto">
+                <i class="bi bi-mortarboard-fill text-primary display-4"></i>
+              </div>
+              <h2 class="h4 fw-bold text-dark mb-2">Welcome to the Quiz!</h2>
+              <p class="text-muted mb-4">
+                Ready to test your skills? Answer 5 multiple-choice questions covering web fundamentals and programming concepts.
+              </p>
+
+              <!-- Rules / Info Box -->
+              <div class="rules-card bg-light p-3 rounded-3 text-start mb-4">
+                <h6 class="fw-bold text-secondary mb-2">
+                  <i class="bi bi-info-circle me-1"></i> Quiz Guidelines:
+                </h6>
+                <ul class="mb-0 text-secondary small ps-3">
+                  <li class="mb-1">Total of <strong>5 multiple-choice questions</strong>.</li>
+                  <li class="mb-1">Each question has <strong>4 possible options</strong>.</li>
+                  <li class="mb-1">You can move forward and backward between questions.</li>
+                  <li class="mb-1">Instant scoring with detailed correct answer explanations at the end.</li>
+                </ul>
+              </div>
+
+              <button id="start-btn" class="btn btn-primary btn-lg px-4 py-2 rounded-pill shadow-sm fw-semibold">
+                Start Quiz <i class="bi bi-arrow-right-circle ms-2"></i>
+              </button>
+            </div>
+
+            <!-- SCREEN 2: Active Quiz Screen -->
+            <div id="quiz-screen" class="d-none">
+              
+              <!-- Progress & Counter Bar -->
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill fw-semibold">
+                  Question <span id="current-question-num">1</span> of <span id="total-questions-num">5</span>
+                </span>
+                <span id="answered-badge" class="badge bg-secondary-subtle text-secondary px-3 py-2 rounded-pill">
+                  Not answered
+                </span>
+              </div>
+
+              <!-- Visual Progress Bar -->
+              <div class="progress mb-4" role="progressbar" style="height: 8px;">
+                <div id="quiz-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width: 20%;"></div>
+              </div>
+
+              <!-- Question Text -->
+              <div class="question-box mb-4">
+                <h3 id="question-text" class="h5 fw-bold text-dark lh-base">
+                  Question text goes here
+                </h3>
+              </div>
+
+              <!-- Options List (Options A, B, C, D) -->
+              <div id="options-container" class="d-flex flex-column gap-3 mb-4">
+                <!-- Dynamically populated by script.js -->
+              </div>
+
+              <!-- Quiz Navigation Buttons -->
+              <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                <button id="prev-btn" class="btn btn-outline-secondary px-4 py-2 rounded-pill fw-medium" disabled>
+                  <i class="bi bi-arrow-left me-1"></i> Previous
+                </button>
+                <button id="next-btn" class="btn btn-primary px-4 py-2 rounded-pill fw-medium" disabled>
+                  Next <i class="bi bi-arrow-right ms-1"></i>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- SCREEN 3: Results & Review Screen -->
+            <div id="results-screen" class="d-none">
+              
+              <!-- Score Summary Header -->
+              <div class="text-center mb-4">
+                <div id="result-icon-box" class="result-icon-box mx-auto mb-3">
+                  <i id="result-icon" class="bi bi-trophy-fill display-4 text-warning"></i>
+                </div>
+                <h2 id="result-title" class="h3 fw-bold text-dark mb-1">Quiz Completed!</h2>
+                <p id="result-message" class="text-muted mb-3">Great job completing the quiz!</p>
+                
+                <!-- Score Pill -->
+                <div class="score-display-card p-3 rounded-4 bg-light d-inline-block border">
+                  <span class="fs-6 text-muted d-block">Your Final Score</span>
+                  <span class="display-5 fw-bold text-primary">
+                    <span id="final-score">0</span> / <span id="final-total">0</span>
+                  </span>
+                  <div class="mt-1">
+                    <span id="score-percentage-badge" class="badge bg-success px-3 py-2 rounded-pill fs-6">
+                      0% Correct
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Detailed Answers Review Section -->
+              <div class="review-section mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h4 class="h5 fw-bold text-dark mb-0">
+                    <i class="bi bi-card-checklist me-2 text-primary"></i>Answer Review
+                  </h4>
+                  <small class="text-muted">Compare your answers with the correct ones</small>
+                </div>
+                <div id="review-container" class="d-flex flex-column gap-3">
+                  <!-- Review cards generated dynamically by script.js -->
+                </div>
+              </div>
+
+              <!-- Restart Button -->
+              <div class="text-center pt-3 border-top">
+                <button id="restart-btn" class="btn btn-success btn-lg px-4 py-2 rounded-pill fw-semibold shadow-sm">
+                  <i class="bi bi-arrow-clockwise me-2"></i> Restart Quiz
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Card Footer -->
+          <div class="card-footer bg-light py-2 px-4 text-center text-muted small border-top-0">
+            Clean Frontend Quiz Application &bull; Built with HTML, CSS, Bootstrap 5 &amp; JavaScript
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
